@@ -1,4 +1,4 @@
-from sqlalchemy import Colum, Integer, String, Float
+from sqlalchemy import Column, Integer, String, Float
 from app import db
 
 class Pokemon(db.Model):
