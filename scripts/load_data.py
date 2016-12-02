@@ -1,9 +1,10 @@
 import pandas
+from flask_script import Command
 
-def loadData():
-    data_frame = pandas.read_csv('data/pokemon.csv')
-    for index, row in data_frame.iterrows():
+class LoadData(Command):
 
+    "Loads pokemon data"
 
-if __name__ == "__main__":
-    loadData()
+    def run(self):
+
+        data_frame = pandas.read_csv('data/pokemon.csv')
