@@ -3,6 +3,7 @@ from importlib import import_module
 from re import sub
 from flask import Flask
 from flask.ext.runner import Manager
+from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from inflection import singularize
 
@@ -12,6 +13,7 @@ flask.config.from_object('config')
 #database
 db = SQLAlchemy(flask)
 manager = Manager(flask)
+migrate = Migrate(flask, db)
 
 def register_blueprints(flask, package):
     package_dir = path.join(getcwd(), __name__, package)
