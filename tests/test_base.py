@@ -6,7 +6,7 @@ class BaseTestCase(TestCase):
 
 
     def create_app(self):
-        flask.config.from_object('config')
+        flask.config.from_object('config.Testing')
         db.create_all()
         return flask
 

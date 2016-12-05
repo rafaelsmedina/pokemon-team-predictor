@@ -1,4 +1,4 @@
-from os import listdir, getcwd, path
+from os import getenv, listdir, getcwd, path
 from importlib import import_module
 from re import sub
 from flask import Flask
@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy
 from inflection import singularize
 
 flask = Flask(__name__, template_folder=path.join(getcwd(), __name__, 'views'))
-flask.config.from_object('config')
+flask.config.from_object('config.' +  getenv('ENV', 'Development'))
 
 #database
 db = SQLAlchemy(flask)
