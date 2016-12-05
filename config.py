@@ -1,4 +1,4 @@
 DEBUG = True
 TESTING = True
-SQLALCHEMY_DATABASE_URI = 'sqlite://'
+SQLALCHEMY_DATABASE_URI = 'postgresql:///pokemonTeamBuilderTest'
 SQLALCHEMY_TRACK_MODIFICATIONS = True

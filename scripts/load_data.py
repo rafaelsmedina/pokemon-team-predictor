@@ -48,5 +48,6 @@ class LoadData(Command):
             pokemon.pre_evolution = handle_nan_str(row['pre-evolution'])
             pokemon.egg_group1 = handle_nan_str(row['egg-group1'])
             pokemon.egg_group2 = handle_nan_str(row['egg-group2'])
+            db.session.add(pokemon)
 
         db.session.commit()
