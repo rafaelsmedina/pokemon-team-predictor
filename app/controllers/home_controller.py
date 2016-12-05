@@ -4,4 +4,4 @@ blueprint = Blueprint('home_controller', __name__, url_prefix='/')
 
 @blueprint.route("/")
 def index():
-    return 'Hello World'
+    return render_template('home/index.html')

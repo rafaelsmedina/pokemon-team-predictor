@@ -7,7 +7,7 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from inflection import singularize
 
-flask = Flask(__name__)
+flask = Flask(__name__, template_folder=path.join(getcwd(), __name__, 'views'))
 flask.config.from_object('config')
 
 #database
