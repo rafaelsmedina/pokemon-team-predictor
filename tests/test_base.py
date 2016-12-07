@@ -9,6 +9,3 @@ class BaseTestCase(TestCase):
         flask.config.from_object('config.Testing')
         db.create_all()
         return flask
-
-
-
