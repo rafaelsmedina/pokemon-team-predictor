@@ -1,8 +1,17 @@
 from test_base import BaseTestCase
-
+from app.models.pokemon import Pokemon
+from factories.pokemon_factory import PokemonFactory
 
 class TestPokemonController(BaseTestCase):
 
-    def test_pokemon_path_should_be_ok(self):
+    render_templates = False
+
+    def setUp(self):
+        PokemonFactory.create_batch(10)
+
+    def tearDown(self):
+        Pokemon.query.delete()
+        
+    def test_pokemon_template_should_be_used(self):
         response = self.client.get("/pokemon/10/")
-        self.assert_200(response)
+        self.assert_template_used('pokemon/pokemon.html')

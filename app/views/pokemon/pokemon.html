@@ -1,42 +1,135 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="/static/table.js"></script>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>{{pokemon.forme}}</title>
 </head>
 <body>
-    <h1 id="name">{{pokemon.forme}}</h1>
-    <div>
-        <p>Pokedex Number: {{pokemon.num_dex }}</p>
-        <p>Type 1: {{pokemon.type1 }}</p>
-        <p>Type 2: {{pokemon.type2 }}</p>
-        <p>Ability 1: {{pokemon.ability1 }}</p>
-        <p>Ability 2: {{pokemon.ability2 }}</p>
-        <p>Hidden Ability: {{pokemon.abilityH }}</p>
-    </div>
-    <div>
-        <h3> Stats </h3>
-        <p>HP: {{pokemon.hp }}</p>
-        <p>Attack: {{pokemon.attack }}</p>
-        <p>Defense: {{pokemon.defense }}</p>
-        <p>SP Attack: {{pokemon.spattack }}</p>
-        <p>SP Defense: {{pokemon.spdefense }}</p>
-        <p>Speed: {{pokemon.speed }}</p>
-        <p>Total: {{pokemon.total }}</p>
-    </div>
-    <div>
-        <h3> Other info </h3>
-        <p>Weight: {{pokemon.weight }}</p>
-        <p>Height: {{pokemon.height }}</p>
-        <p>Dex entrance 1: {{pokemon.dex1 }}</p>
-        <p>Dex entrance 2: {{pokemon.dex2 }}</p>
-        <p>Class: {{pokemon.pkmn_class }}</p>
-        <p>Male percentage: {{pokemon.percent_male }}</p>
-        <p>Female percentage: {{pokemon.percent_female }}</p>
-        <p>Pre-evolution: {{pokemon.pre_evolution }}</p>
-        <p>Egg Group 2: {{pokemon.egg_group2 }}</p>
-        <p>Egg Group 1: {{pokemon.egg_group1 }}</p>
-    </div>
-</table>
+    <div class="col-md-12">
+        <div class="page-header">
+            <h1><small> #{{pokemon.num_dex}}</small> {{pokemon.forme}}</h1>
+            <!-- POKEMON IMAGE -->
+            {% if '(' in pokemon.forme %}
+                {% set list1 = pokemon.forme.split(' ') %}
+                <!-- MEGA X FORMES -->
+                {% if '(Mega' and 'X)' in pokemon.forme %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megax.png">
+                <!-- MEGA Y FORMES -->
+                {% elif '(Mega' and 'Y)' in pokemon.forme %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megay.png">
+                <!-- MEGA FORMES -->
+                {% elif '(Mega' in pokemon.forme %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-mega.png">
+                <!-- ALL PIKACHU FORMES -->
+                {% elif 'Pikachu' in pokemon.forme %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
+                <!-- ALOLA FORMES -->
+                {% elif '(Alola' in pokemon.forme %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-alola.png">
+                <!-- UNOWN FORMES -->
+                {% elif 'Unown' in pokemon.forme %}
+                    {% set letter = 28 - 870 + pokemon.id %}
+                    {% set letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %}
+                    {% if letter >= 2%}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[letter-2]}}.png">
+                    {% else %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[0]}}.png">
+                    {% endif %}
+                {% else %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
+                {% endif %}
+            {% else %}
+                <img src="http://play.pokemonshowdown.com/sprites/bw/{{pokemon.forme.lower()}}.png">
+            {% endif %}
+            <!-- POKEMON IMAGE -->
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <ul class="list-group">
 
+                        {% if pokemon.type2 != 'nan' %}
+                            <li class="list-group-item">Type 1: {{pokemon.type1}}</li>
+                            <li class="list-group-item">Type 2: {{pokemon.type2}}</li>
+                        {% else %}
+                            <li class="list-group-item">Type: {{pokemon.type1}}</li>
+                        {% endif %}
+                        
+                        {% if pokemon.ability2 != 'nan' %}
+                            <li class="list-group-item">Ability 1: {{pokemon.ability1}}</li>
+                            <li class="list-group-item">Ability 2: {{pokemon.ability2}}</li>
+                        {% else %}
+                            <li class="list-group-item">Ability: {{pokemon.ability1}}</li>
+                        {% endif %}
+
+                        {% if pokemon.abilityH != 'nan' %}
+                            <li class="list-group-item">Hidden Ability: {{pokemon.abilityH}}</li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">    
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Stats </h3>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">HP: {{pokemon.hp }}</li>
+                        <li class="list-group-item">Attack: {{pokemon.attack }}</li>
+                        <li class="list-group-item">Defense: {{pokemon.defense}}</li>
+                        <li class="list-group-item">SP Attack: {{pokemon.spattack}}</li>
+                        <li class="list-group-item">SP Defense: {{pokemon.spdefense}}</li>
+                        <li class="list-group-item">Speed: {{pokemon.speed }}</li>
+                        <li class="list-group-item">Total: {{pokemon.total }}</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"> Other info </h3>
+                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item">Weight: {{pokemon.weight }}</li>
+                        <li class="list-group-item">Height: {{pokemon.height }}</li>
+
+                        {% if pokemon.dex2 != 'nan' %}
+                            <li class="list-group-item">Dex entrance 1: {{pokemon.dex1}}</li>
+                            <li class="list-group-item">Dex entrance 2: {{pokemon.dex2}}</li>
+                        {% else %}
+                            {% if pokemon.dex1 != 'nan' %}
+                                <li class="list-group-item">Dex entrance: {{pokemon.dex1}}</li>
+                            {% endif %}
+                        {% endif %}
+
+                        <li class="list-group-item">Class: {{pokemon.pkmn_class }}</li>
+                        <li class="list-group-item">Male percentage: {{pokemon.percent_male}}</li>
+                        <li class="list-group-item">Female percentage: {{pokemon.percent_female}}</li>
+
+                        {% if pokemon.pre_evolution != 'nan' %}
+                            <li class="list-group-item">Pre-evolution: {{pokemon.pre_evolution}}</li>
+                        {% else %}
+                            <li class="list-group-item">Pre-evolution: - </li>
+                        {% endif %}
+
+                        {% if pokemon.egg_group2 != 'nan' %}
+                            <li class="list-group-item">Egg Group 1: {{pokemon.egg_group1}}</li>
+                            <li class="list-group-item">Egg Group 2: {{pokemon.egg_group2}}</li>
+                        {% else %}
+                            {% if pokemon.egg_group1 != 'nan' %}
+                                <li class="list-group-item">Egg Group: {{pokemon.egg_group1}}</li>
+                            {% endif %}
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
