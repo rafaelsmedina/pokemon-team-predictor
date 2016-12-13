@@ -13,43 +13,45 @@
     <div class="col-md-12">
         <div class="page-header">
             <h1><small> #{{pokemon.num_dex}}</small> {{pokemon.forme}}</h1>
-            <!-- POKEMON IMAGE -->
-            {% if '(' in pokemon.forme %}
-                {% set list1 = pokemon.forme.split(' ') %}
-                <!-- MEGA X FORMES -->
-                {% if '(Mega' and 'X)' in pokemon.forme %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megax.png">
-                <!-- MEGA Y FORMES -->
-                {% elif '(Mega' and 'Y)' in pokemon.forme %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megay.png">
-                <!-- MEGA FORMES -->
-                {% elif '(Mega' in pokemon.forme %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-mega.png">
-                <!-- ALL PIKACHU FORMES -->
-                {% elif 'Pikachu' in pokemon.forme %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
-                <!-- ALOLA FORMES -->
-                {% elif '(Alola' in pokemon.forme %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-alola.png">
-                <!-- UNOWN FORMES -->
-                {% elif 'Unown' in pokemon.forme %}
-                    {% set letter = 28 - 870 + pokemon.id %}
-                    {% set letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %}
-                    {% if letter >= 2%}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[letter-2]}}.png">
-                    {% else %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[0]}}.png">
-                    {% endif %}
-                {% else %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
-                {% endif %}
-            {% else %}
-                <img src="http://play.pokemonshowdown.com/sprites/bw/{{pokemon.forme.lower()}}.png">
-            {% endif %}
-            <!-- POKEMON IMAGE -->
         </div>
         <div class="row">
             <div class="col-md-4">
+            <div>
+                <!-- POKEMON IMAGE -->
+                {% if '(' in pokemon.forme %}
+                    {% set list1 = pokemon.forme.split(' ') %}
+                    <!-- MEGA X FORMES -->
+                    {% if '(Mega' and 'X)' in pokemon.forme %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megax.png">
+                    <!-- MEGA Y FORMES -->
+                    {% elif '(Mega' and 'Y)' in pokemon.forme %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megay.png">
+                    <!-- MEGA FORMES -->
+                    {% elif '(Mega' in pokemon.forme %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-mega.png">
+                    <!-- ALL PIKACHU FORMES -->
+                    {% elif 'Pikachu' in pokemon.forme %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
+                    <!-- ALOLA FORMES -->
+                    {% elif '(Alola' in pokemon.forme %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-alola.png">
+                    <!-- UNOWN FORMES -->
+                    {% elif 'Unown' in pokemon.forme %}
+                        {% set letter = 28 - 870 + pokemon.id %}
+                        {% set letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %}
+                        {% if letter >= 2%}
+                            <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[letter-2]}}.png">
+                        {% else %}
+                            <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[0]}}.png">
+                        {% endif %}
+                    {% else %}
+                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
+                    {% endif %}
+                {% else %}
+                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{pokemon.forme.lower()}}.png">
+                {% endif %}
+                <!-- POKEMON IMAGE -->
+                </div>
                 <div class="panel panel-default">
                     <ul class="list-group">
 
