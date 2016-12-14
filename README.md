@@ -8,3 +8,4 @@ Before using:
 
 - sudo apt-get install libpq-dev
 - sudo apt-get install postgresql
+- apt-get install python-dev
