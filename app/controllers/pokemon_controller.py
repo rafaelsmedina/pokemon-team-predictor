@@ -1,7 +1,6 @@
 from flask import Blueprint, render_template, json, redirect, url_for
 from app.models.pokemon import Pokemon
 from app import db
-import home_controller
 
 blueprint = Blueprint('pokemon_controller', __name__, url_prefix='/pokemon')
 

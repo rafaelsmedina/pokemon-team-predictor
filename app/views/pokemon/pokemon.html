@@ -4,6 +4,8 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="/static/table.js"></script>
+    <script src="//d3plus.org/js/d3.js"></script>
+    <script src="//d3plus.org/js/d3plus.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -78,19 +80,21 @@
             <div class="col-md-4">
                 <div class="panel panel-default">    
                     <div class="panel-heading">
-                        <h3 class="panel-title"> Stats </h3>
+                        <h3 class="panel-title" id="stats_click"> Stats </h3>
                     </div>
-                    <ul class="list-group">
-                        <li class="list-group-item">HP: {{pokemon.hp }}</li>
-                        <li class="list-group-item">Attack: {{pokemon.attack }}</li>
-                        <li class="list-group-item">Defense: {{pokemon.defense}}</li>
-                        <li class="list-group-item">SP Attack: {{pokemon.spattack}}</li>
-                        <li class="list-group-item">SP Defense: {{pokemon.spdefense}}</li>
-                        <li class="list-group-item">Speed: {{pokemon.speed }}</li>
-                        <li class="list-group-item">Total: {{pokemon.total }}</li>
-                    </ul>
+                            <ul class="list-group" id="stats_table">
+                                <li class="list-group-item">HP: {{pokemon.hp }}</li>
+                                <li class="list-group-item">Attack: {{pokemon.attack }}</li>
+                                <li class="list-group-item">Defense: {{pokemon.defense}}</li>
+                                <li class="list-group-item">SP Attack: {{pokemon.spattack}}</li>
+                                <li class="list-group-item">SP Defense: {{pokemon.spdefense}}</li>
+                                <li class="list-group-item">Speed: {{pokemon.speed}}</li>
+                                <li class="list-group-item">Total: {{pokemon.total}}</li>
+                            </ul>
+                        <div id="stats_viz" style="height:inherit"></div>
                 </div>
             </div>
+
             <div class="col-md-4">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -134,4 +138,40 @@
         </div>
     </div>
 </body>
+
+<script>
+  var sample_data = [
+    {"name": '{{pokemon.forme}}',"skill": "hp", "value": {{pokemon.hp}} },
+    {"name": '{{pokemon.forme}}',"skill": "attack", "value": {{pokemon.attack}} },
+    {"name": '{{pokemon.forme}}',"skill": "spattack", "value": {{pokemon.defense}} },
+    {"name": '{{pokemon.forme}}',"skill": "defense", "value": {{pokemon.spattack}} },
+    {"name": '{{pokemon.forme}}',"skill": "spdefense", "value": {{pokemon.spdefense}} },
+    {"name": '{{pokemon.forme}}',"skill": "speed", "value": {{pokemon.speed}} },
+  ];
+
+  var visualization = d3plus.viz()
+    .container("#stats_viz")
+    .data(sample_data)
+    .id(["name", "skill"])
+    .size("value")
+    .type("radar")
+    .draw();
+</script>
+<script>
+    $(function(){
+        $("#stats_table").hide();
+    });
+
+    $("#stats_click").click(function(){
+        if ($("#stats_viz").is(":visible")){
+          $("#stats_table").show();
+          $("#stats_viz").hide();
+        }
+      else{
+          $("#stats_table").hide();
+          $("#stats_viz").show();
+      }
+    })
+</script>
+
 </html>

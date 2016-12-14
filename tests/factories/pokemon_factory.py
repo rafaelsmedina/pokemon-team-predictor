@@ -22,7 +22,7 @@ class PokemonFactory(factory.alchemy.SQLAlchemyModelFactory):
     spattack = 100
     spdefense = 100
     speed = 100
-    total = 100
+    total = 600
     weight = 'test'
     height = 'test'
     dex1 = 'test'
