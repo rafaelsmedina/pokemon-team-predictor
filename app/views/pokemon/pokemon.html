@@ -12,6 +12,7 @@
     <title>{{pokemon.forme}}</title>
 </head>
 <body>
+    <a class="btn" href="{{ url_for('home_controller.index')}}"> Back </a>
     <div class="col-md-12">
         <div class="page-header">
             <h1><small> #{{pokemon.num_dex}}</small> {{pokemon.forme}}</h1>
@@ -58,10 +59,12 @@
                     <ul class="list-group">
 
                         {% if pokemon.type2 != 'nan' %}
-                            <li class="list-group-item">Type 1: {{pokemon.type1}}</li>
-                            <li class="list-group-item">Type 2: {{pokemon.type2}}</li>
+                            <li class="list-group-item">
+                                <img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type1}}.png">
+                                <img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type2}}.png">
+                            </li>
                         {% else %}
-                            <li class="list-group-item">Type: {{pokemon.type1}}</li>
+                            <li class="list-group-item"><img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type1}}.png"></li>
                         {% endif %}
                         
                         {% if pokemon.ability2 != 'nan' %}
@@ -141,13 +144,34 @@
 
 <script>
   var sample_data = [
-    {"name": '{{pokemon.forme}}',"skill": "hp", "value": {{pokemon.hp}} },
-    {"name": '{{pokemon.forme}}',"skill": "attack", "value": {{pokemon.attack}} },
-    {"name": '{{pokemon.forme}}',"skill": "spattack", "value": {{pokemon.defense}} },
-    {"name": '{{pokemon.forme}}',"skill": "defense", "value": {{pokemon.spattack}} },
-    {"name": '{{pokemon.forme}}',"skill": "spdefense", "value": {{pokemon.spdefense}} },
-    {"name": '{{pokemon.forme}}',"skill": "speed", "value": {{pokemon.speed}} },
+    {"name": "{{pokemon.forme}}","skill": "HP", "value": {{pokemon.hp}} , "type": "{{pokemon.type1}}" },
+    {"name": "{{pokemon.forme}}","skill": "Attack", "value": {{pokemon.attack}} , "type": "{{pokemon.type1}}" },
+    {"name": "{{pokemon.forme}}","skill": "Sp. Attack", "value": {{pokemon.spattack}} , "type": "{{pokemon.type1}}" },
+    {"name": "{{pokemon.forme}}","skill": "Defense", "value": {{pokemon.defense}} , "type": "{{pokemon.type1}}" },
+    {"name": "{{pokemon.forme}}","skill": "Sp. Defense", "value": {{pokemon.spdefense}} , "type": "{{pokemon.type1}}" },
+    {"name": "{{pokemon.forme}}","skill": "Speed", "value": {{pokemon.speed}} , "type": "{{pokemon.type1}}" },
   ];
+
+    var attributes = {
+    "Normal": "#A8A878",
+    "Flying": "#A890F0",    
+    "Poison": "#A040A0",
+    "Fighting": "#C03028",
+    "Fire": "#F08030",
+    "Water": "#6890F0",    
+    "Ice": "#98D8D8",
+    "Fairy": "#EE99AC",
+    "Ghost": "#705898",
+    "Ground": "#E0C068",    
+    "Rock": "#B8A038",
+    "Electric": "#F8D030",
+    "Dragon": "#7038F8",
+    "Dark": "#705848",    
+    "Steel": "#B8B8D0",
+    "Grass": "#78C850",
+    "Bug": "#A8B820",
+    "Psychic": "#F85888"
+  }
 
   var visualization = d3plus.viz()
     .container("#stats_viz")
@@ -155,8 +179,13 @@
     .id(["name", "skill"])
     .size("value")
     .type("radar")
+    .attrs(attributes)
+    .color(function(d){
+      return attributes[d.type];
+    })  
     .draw();
 </script>
+
 <script>
     $(function(){
         $("#stats_table").hide();
@@ -164,14 +193,18 @@
 
     $("#stats_click").click(function(){
         if ($("#stats_viz").is(":visible")){
-          $("#stats_table").show();
-          $("#stats_viz").hide();
+          $("#stats_table").fadeIn().show();
+          $("#stats_viz").fadeIn().hide();
         }
       else{
-          $("#stats_table").hide();
-          $("#stats_viz").show();
+          $("#stats_table").fadeIn().hide();
+          $("#stats_viz").fadeIn().show();
       }
-    })
+    });
+</script>
+
+<script>
+
 </script>
 
 </html>
