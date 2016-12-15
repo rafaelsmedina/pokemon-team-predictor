@@ -3,80 +3,36 @@
 <head>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="/static/table.js"></script>
+    
     <script src="//d3plus.org/js/d3.js"></script>
     <script src="//d3plus.org/js/d3plus.js"></script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title>{{pokemon.forme}}</title>
+    <title id="forme-title"> {{ id }} </title>
 </head>
-<body>
+<body id="pokemon-page">
     <a class="btn" href="{{ url_for('home_controller.index')}}"> Back </a>
     <div class="col-md-12">
         <div class="page-header">
-            <h1><small> #{{pokemon.num_dex}}</small> {{pokemon.forme}}</h1>
+            <h1 id="forme-header"></h1>
         </div>
         <div class="row">
             <div class="col-md-4">
             <div>
                 <!-- POKEMON IMAGE -->
-                {% if '(' in pokemon.forme %}
-                    {% set list1 = pokemon.forme.split(' ') %}
-                    <!-- MEGA X FORMES -->
-                    {% if '(Mega' and 'X)' in pokemon.forme %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megax.png">
-                    <!-- MEGA Y FORMES -->
-                    {% elif '(Mega' and 'Y)' in pokemon.forme %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-megay.png">
-                    <!-- MEGA FORMES -->
-                    {% elif '(Mega' in pokemon.forme %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-mega.png">
-                    <!-- ALL PIKACHU FORMES -->
-                    {% elif 'Pikachu' in pokemon.forme %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
-                    <!-- ALOLA FORMES -->
-                    {% elif '(Alola' in pokemon.forme %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-alola.png">
-                    <!-- UNOWN FORMES -->
-                    {% elif 'Unown' in pokemon.forme %}
-                        {% set letter = 28 - 870 + pokemon.id %}
-                        {% set letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'] %}
-                        {% if letter >= 2%}
-                            <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[letter-2]}}.png">
-                        {% else %}
-                            <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}-{{letters[0]}}.png">
-                        {% endif %}
-                    {% else %}
-                        <img src="http://play.pokemonshowdown.com/sprites/bw/{{list1[0].lower()}}.png">
-                    {% endif %}
-                {% else %}
-                    <img src="http://play.pokemonshowdown.com/sprites/bw/{{pokemon.forme.lower()}}.png">
-                {% endif %}
+                    <img id="image-link" src="#">
                 <!-- POKEMON IMAGE -->
                 </div>
                 <div class="panel panel-default">
                     <ul class="list-group">
-
-                        {% if pokemon.type2 != 'nan' %}
-                            <li class="list-group-item">
-                                <img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type1}}.png">
-                                <img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type2}}.png">
-                            </li>
-                        {% else %}
-                            <li class="list-group-item"><img src="http://play.pokemonshowdown.com/sprites/types/{{pokemon.type1}}.png"></li>
-                        {% endif %}
-                        
-                        {% if pokemon.ability2 != 'nan' %}
-                            <li class="list-group-item">Ability 1: {{pokemon.ability1}}</li>
-                            <li class="list-group-item">Ability 2: {{pokemon.ability2}}</li>
-                        {% else %}
-                            <li class="list-group-item">Ability: {{pokemon.ability1}}</li>
-                        {% endif %}
-
-                        {% if pokemon.abilityH != 'nan' %}
-                            <li class="list-group-item">Hidden Ability: {{pokemon.abilityH}}</li>
-                        {% endif %}
+                        <li class="list-group-item">
+                            <img id="type1" src="#">
+                            <img id="type2" src="#">
+                        </li>
+                        <li class="list-group-item" id="ability1-li"></li>
+                        <li class="list-group-item" id="ability2-li"></li>
+                        <li class="list-group-item" id="abilityH-li"></li>
                     </ul>
                 </div>
             </div>
@@ -86,15 +42,15 @@
                         <h3 class="panel-title" id="stats_click"> Stats </h3>
                     </div>
                             <ul class="list-group" id="stats_table">
-                                <li class="list-group-item">HP: {{pokemon.hp }}</li>
-                                <li class="list-group-item">Attack: {{pokemon.attack }}</li>
-                                <li class="list-group-item">Defense: {{pokemon.defense}}</li>
-                                <li class="list-group-item">SP Attack: {{pokemon.spattack}}</li>
-                                <li class="list-group-item">SP Defense: {{pokemon.spdefense}}</li>
-                                <li class="list-group-item">Speed: {{pokemon.speed}}</li>
-                                <li class="list-group-item">Total: {{pokemon.total}}</li>
+                                <li class="list-group-item" id="hp-li"></li>
+                                <li class="list-group-item" id="attack-li"></li>
+                                <li class="list-group-item" id="defense-li"></li>
+                                <li class="list-group-item" id="spattack-li"></li>
+                                <li class="list-group-item" id="spdefense-li"></li>
+                                <li class="list-group-item" id="speed-li"></li>
+                                <li class="list-group-item" id="total-li"></li>
                             </ul>
-                        <div id="stats_viz" style="height:inherit"></div>
+                        <div id="stats_viz"></div>
                 </div>
             </div>
 
@@ -104,36 +60,16 @@
                         <h3 class="panel-title"> Other info </h3>
                     </div>
                     <ul class="list-group">
-                        <li class="list-group-item">Weight: {{pokemon.weight }}</li>
-                        <li class="list-group-item">Height: {{pokemon.height }}</li>
-
-                        {% if pokemon.dex2 != 'nan' %}
-                            <li class="list-group-item">Dex entrance 1: {{pokemon.dex1}}</li>
-                            <li class="list-group-item">Dex entrance 2: {{pokemon.dex2}}</li>
-                        {% else %}
-                            {% if pokemon.dex1 != 'nan' %}
-                                <li class="list-group-item">Dex entrance: {{pokemon.dex1}}</li>
-                            {% endif %}
-                        {% endif %}
-
-                        <li class="list-group-item">Class: {{pokemon.pkmn_class }}</li>
-                        <li class="list-group-item">Male percentage: {{pokemon.percent_male}}</li>
-                        <li class="list-group-item">Female percentage: {{pokemon.percent_female}}</li>
-
-                        {% if pokemon.pre_evolution != 'nan' %}
-                            <li class="list-group-item">Pre-evolution: {{pokemon.pre_evolution}}</li>
-                        {% else %}
-                            <li class="list-group-item">Pre-evolution: - </li>
-                        {% endif %}
-
-                        {% if pokemon.egg_group2 != 'nan' %}
-                            <li class="list-group-item">Egg Group 1: {{pokemon.egg_group1}}</li>
-                            <li class="list-group-item">Egg Group 2: {{pokemon.egg_group2}}</li>
-                        {% else %}
-                            {% if pokemon.egg_group1 != 'nan' %}
-                                <li class="list-group-item">Egg Group: {{pokemon.egg_group1}}</li>
-                            {% endif %}
-                        {% endif %}
+                        <li class="list-group-item" id = "weight-li"></li>
+                        <li class="list-group-item" id = "height-li"></li>
+                        <li class="list-group-item" id = "dex1-li"></li>
+                        <li class="list-group-item" id = "dex2-li"></li>
+                        <li class="list-group-item" id = "class-li"></li>
+                        <li class="list-group-item" id = "malep-li"></li>
+                        <li class="list-group-item" id = "femalep-li"></li>
+                        <li class="list-group-item" id = "pre-ev-li"></li>
+                        <li class="list-group-item" id = "egg1-li"></li>
+                        <li class="list-group-item" id = "egg2-li"></li>
 
                     </ul>
                 </div>
@@ -141,70 +77,5 @@
         </div>
     </div>
 </body>
-
-<script>
-  var sample_data = [
-    {"name": "{{pokemon.forme}}","skill": "HP", "value": {{pokemon.hp}} , "type": "{{pokemon.type1}}" },
-    {"name": "{{pokemon.forme}}","skill": "Attack", "value": {{pokemon.attack}} , "type": "{{pokemon.type1}}" },
-    {"name": "{{pokemon.forme}}","skill": "Sp. Attack", "value": {{pokemon.spattack}} , "type": "{{pokemon.type1}}" },
-    {"name": "{{pokemon.forme}}","skill": "Defense", "value": {{pokemon.defense}} , "type": "{{pokemon.type1}}" },
-    {"name": "{{pokemon.forme}}","skill": "Sp. Defense", "value": {{pokemon.spdefense}} , "type": "{{pokemon.type1}}" },
-    {"name": "{{pokemon.forme}}","skill": "Speed", "value": {{pokemon.speed}} , "type": "{{pokemon.type1}}" },
-  ];
-
-    var attributes = {
-    "Normal": "#A8A878",
-    "Flying": "#A890F0",    
-    "Poison": "#A040A0",
-    "Fighting": "#C03028",
-    "Fire": "#F08030",
-    "Water": "#6890F0",    
-    "Ice": "#98D8D8",
-    "Fairy": "#EE99AC",
-    "Ghost": "#705898",
-    "Ground": "#E0C068",    
-    "Rock": "#B8A038",
-    "Electric": "#F8D030",
-    "Dragon": "#7038F8",
-    "Dark": "#705848",    
-    "Steel": "#B8B8D0",
-    "Grass": "#78C850",
-    "Bug": "#A8B820",
-    "Psychic": "#F85888"
-  }
-
-  var visualization = d3plus.viz()
-    .container("#stats_viz")
-    .data(sample_data)
-    .id(["name", "skill"])
-    .size("value")
-    .type("radar")
-    .attrs(attributes)
-    .color(function(d){
-      return attributes[d.type];
-    })  
-    .draw();
-</script>
-
-<script>
-    $(function(){
-        $("#stats_table").hide();
-    });
-
-    $("#stats_click").click(function(){
-        if ($("#stats_viz").is(":visible")){
-          $("#stats_table").fadeIn().show();
-          $("#stats_viz").fadeIn().hide();
-        }
-      else{
-          $("#stats_table").fadeIn().hide();
-          $("#stats_viz").fadeIn().show();
-      }
-    });
-</script>
-
-<script>
-
-</script>
-
+    <script src="/static/load_pokemon_page.js"></script>
 </html>
