@@ -9,7 +9,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title id="forme-title"> {{ id }} </title>
+    <title id="forme-title">{{ id }}</title>
 </head>
 <body id="pokemon-page">
     <a class="btn" href="{{ url_for('home_controller.index')}}"> Back </a>
@@ -41,16 +41,18 @@
                     <div class="panel-heading">
                         <h3 class="panel-title" id="stats_click"> Stats </h3>
                     </div>
-                            <ul class="list-group" id="stats_table">
-                                <li class="list-group-item" id="hp-li"></li>
-                                <li class="list-group-item" id="attack-li"></li>
-                                <li class="list-group-item" id="defense-li"></li>
-                                <li class="list-group-item" id="spattack-li"></li>
-                                <li class="list-group-item" id="spdefense-li"></li>
-                                <li class="list-group-item" id="speed-li"></li>
-                                <li class="list-group-item" id="total-li"></li>
-                            </ul>
-                        <div id="stats_viz"></div>
+                        <ul class="list-group" id="stats_table">
+                            <li class="list-group-item" id="hp-li"></li>
+                            <li class="list-group-item" id="attack-li"></li>
+                            <li class="list-group-item" id="defense-li"></li>
+                            <li class="list-group-item" id="spattack-li"></li>
+                            <li class="list-group-item" id="spdefense-li"></li>
+                            <li class="list-group-item" id="speed-li"></li>
+                            <li class="list-group-item" id="total-li"></li>
+                        </ul>
+                    <div style="height:350px" id="viz_div">
+                        <div id="stats_viz" style="height:inherit"></div>
+                    </div>
                 </div>
             </div>
 

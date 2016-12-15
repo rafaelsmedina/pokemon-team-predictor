@@ -31,13 +31,20 @@ $(document).ready(function() {
         $("#spdefense-li").text("Sp. Defense: " + pokemon["spdefense"]);
         $("#speed-li").text("Speed: " + pokemon["speed"]);
         $("#total-li").text("Total: " + pokemon["total"]);
+        $("#stats_table").hide();
 
         //more info
         $("#weight-li").text("Weight: " + pokemon["weight"]);
         $("#height-li").text("Height: " + pokemon["height"]);
 
         if(pokemon["dex2"] == 'nan'){
-            $("#dex1-li").text("Dex Entrance: " + pokemon["dex1"]);
+            if(pokemon["dex1"] == 'nan'){
+                $("#dex1-li").hide();
+            } else{
+
+                $("#dex1-li").text("Dex Entrance: " + pokemon["dex1"]);
+            }
+
             $("#dex2-li").hide();
         }
         else {
@@ -77,7 +84,7 @@ $(document).ready(function() {
             $("#type2").attr("src", pokemon["type2-image"]);
         }
 
-        //graph
+        //stats graph
         var sample_data = [
             {"name": pokemon["forme"] ,"skill": "HP", "value": pokemon["hp"] , "type": pokemon["type1"] },
             {"name": pokemon["forme"] ,"skill": "Attack", "value": pokemon["attack"] , "type": pokemon["type1"] },
@@ -122,17 +129,13 @@ $(document).ready(function() {
     }});
 });
 
-$(function(){
-    $("#stats_table").hide();
-});
-console.log(id);
 $("#stats_click").click(function(){
-    if ($("#stats_viz").is(":visible")){
+    if ($("#viz_div").is(":visible")){
         $("#stats_table").fadeIn().show();
-        $("#stats_viz").fadeIn().hide();
+        $("#viz_div").fadeIn().hide();
     }
     else{
         $("#stats_table").fadeIn().hide();
-        $("#stats_viz").fadeIn().show();
+        $("#viz_div").fadeIn().show();
     }
 });
