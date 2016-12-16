@@ -85,7 +85,7 @@ $(document).ready(function() {
         }
 
         //stats graph
-        var sample_data = [
+        var stats_data = [
             {"name": pokemon["forme"] ,"skill": "HP", "value": pokemon["hp"] , "type": pokemon["type1"] },
             {"name": pokemon["forme"] ,"skill": "Attack", "value": pokemon["attack"] , "type": pokemon["type1"] },
             {"name": pokemon["forme"] ,"skill": "Defense", "value": pokemon["defense"] , "type": pokemon["type1"] },
@@ -117,7 +117,7 @@ $(document).ready(function() {
 
           var visualization = d3plus.viz()
             .container("#stats_viz")
-            .data(sample_data)
+            .data(stats_data)
             .id(["name", "skill"])
             .size("value")
             .type("radar")
@@ -126,6 +126,32 @@ $(document).ready(function() {
               return attributes[d.type];
             })  
             .draw();
+
+        var data = [
+            {"name": pokemon["forme"], "gender": "Female", "value": pokemon["percent_female"]},
+            {"name": pokemon["forme"], "gender" : "Male", "value": pokemon["percent_male"]}
+            ];
+
+            if (pokemon["percent_male"] == 0 && pokemon["percent_female"] == 0){
+                data = [{"name": pokemon["forme"], "gender": "Genderless", "value": 100}]
+            } 
+
+        var gender_colours = {
+            "Female": "#f8c2f9",
+            "Male": "#bdd5fc",    
+            "Genderless": "#ae76fc"
+          }
+
+        var visualization = d3plus.viz()
+            .container("#ratio_viz")
+            .data(data)
+            .type("tree_map")
+            .id(["gender"])
+            .size("value")
+            .color(function(d){
+              return gender_colours[d.gender];
+            }) 
+            .draw()
     }});
 });
 
