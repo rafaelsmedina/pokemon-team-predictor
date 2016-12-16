@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    
+{% extends "base/base.html" %}
+
+{% block title %}
+    <title id="forme-title">{{ id }}</title>
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
     <script src="//d3plus.org/js/d3.js"></script>
     <script src="//d3plus.org/js/d3plus.js"></script>
+{% endblock %}
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <title id="forme-title">{{ id }}</title>
-</head>
-<body id="pokemon-page">
-    <a class="btn" href="{{ url_for('home_controller.index')}}"> Back </a>
-    <div class="col-md-12">
+{% block content %}
+<div class="col-md-12">
         <div class="page-header">
             <h1 id="forme-header"></h1>
         </div>
@@ -78,6 +76,8 @@
             </div>
         </div>
     </div>
-</body>
+{% endblock %}
+
+{% block footer %}
     <script src="/static/load_pokemon_page.js"></script>
-</html>
+{% endblock %}

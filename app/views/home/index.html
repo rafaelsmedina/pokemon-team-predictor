@@ -1,22 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>All pokémon Listing</title>
+{% extends "base/base.html" %}
+{% block title %}<title>All pokémon Listing</title>{% endblock %}
+{% block head %}
+  {{ super() }}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
-
-    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
     <script src="/static/table.js"></script>
-
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</head>
-    <body>
+{% endblock %}
+{% block content %}
         <div class="col-md-12">
             <div class="page-header">
                 <h1>Pokémon listing</h1>
@@ -31,5 +21,4 @@
                 </thead>
             </table>
         </div>
-    </body>
-</html>
+{% endblock %}
