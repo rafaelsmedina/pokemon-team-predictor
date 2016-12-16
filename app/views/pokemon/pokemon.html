@@ -11,17 +11,17 @@
 {% endblock %}
 
 {% block content %}
-<div class="col-md-12">
-        <div class="page-header">
-            <h1 id="forme-header"></h1>
-        </div>
-        <div class="row">
-            <div class="col-md-4">
-            <div>
-                <!-- POKEMON IMAGE -->
-                    <img id="image-link" src="#">
-                <!-- POKEMON IMAGE -->
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img id="image-link" src="#" style="float:left">
+                    <h1 id="forme-header" style="float:center"></h1>
+                    
                 </div>
+            </div>
+            <div class="row">
                 <div class="panel panel-default">
                     <ul class="list-group">
                         <li class="list-group-item">
@@ -32,35 +32,48 @@
                         <li class="list-group-item" id="ability2-li"></li>
                         <li class="list-group-item" id="abilityH-li"></li>
                     </ul>
-
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="panel panel-default">    
-                    <div class="panel-heading">
-                        <h3 class="panel-title" id="stats_click"> Stats </h3>
-                    </div>
-                        <ul class="list-group" id="stats_table">
-                            <li class="list-group-item" id="hp-li"></li>
-                            <li class="list-group-item" id="attack-li"></li>
-                            <li class="list-group-item" id="defense-li"></li>
-                            <li class="list-group-item" id="spattack-li"></li>
-                            <li class="list-group-item" id="spdefense-li"></li>
-                            <li class="list-group-item" id="speed-li"></li>
-                            <li class="list-group-item" id="total-li"></li>
-                        </ul>
-                    <div style="height:350px" id="viz_div">
-                        <div id="stats_viz" style="height:inherit"></div>
-                    </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section class="success">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Stats</h2>
                 </div>
             </div>
-
-            <div class="col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"> Other info </h3>
+            <div class="row">
+                <div class="col-md-12" style="overflow:hidden">
+                        <div class="col-md-8" id="stats_viz" style="height:inherit; float:left"></div>
+                    <div class=" col-md-4" style="color:#000; height:inherit">
+                        <li class="list-group-item" id="hp-li"></li>
+                        <li class="list-group-item" id="attack-li"></li>
+                        <li class="list-group-item" id="defense-li"></li>
+                        <li class="list-group-item" id="spattack-li"></li>
+                        <li class="list-group-item" id="spdefense-li"></li>
+                        <li class="list-group-item" id="speed-li"></li>
+                        <li class="list-group-item" id="total-li"></li>
                     </div>
-                    <ul class="list-group">
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h1>Other info</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md">
+                    <ul class="list-group col-md-6">
                         <li class="list-group-item" id = "weight-li"></li>
                         <li class="list-group-item" id = "height-li"></li>
                         <li class="list-group-item" id = "dex1-li"></li>
@@ -69,13 +82,15 @@
                         <li class="list-group-item" id = "pre-ev-li"></li>
                         <li class="list-group-item" id = "egg1-li"></li>
                         <li class="list-group-item" id = "egg2-li"></li>
-                        <li class="list-group-item"> <div id="ratio_viz"></div></li>
-
                     </ul>
+                    <div class="col-md-6" style="height:350px">
+                        <div id="ratio_viz" style="height:inherit"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 {% endblock %}
 
 {% block footer %}

@@ -31,7 +31,6 @@ $(document).ready(function() {
         $("#spdefense-li").text("Sp. Defense: " + pokemon["spdefense"]);
         $("#speed-li").text("Speed: " + pokemon["speed"]);
         $("#total-li").text("Total: " + pokemon["total"]);
-        $("#stats_table").hide();
 
         //more info
         $("#weight-li").text("Weight: " + pokemon["weight"]);
@@ -127,9 +126,10 @@ $(document).ready(function() {
             })  
             .draw();
 
+        //GENDER VISUALIZATION
         var data = [
-            {"name": pokemon["forme"], "gender": "Female", "value": pokemon["percent_female"]},
-            {"name": pokemon["forme"], "gender" : "Male", "value": pokemon["percent_male"]}
+            {"gender": "Female", "value": pokemon["percent_female"]},
+            {"gender" : "Male", "value": pokemon["percent_male"]}
             ];
 
             if (pokemon["percent_male"] == 0 && pokemon["percent_female"] == 0){
@@ -150,18 +150,8 @@ $(document).ready(function() {
             .size("value")
             .color(function(d){
               return gender_colours[d.gender];
-            }) 
+            })
+            .legend({"size": 0})
             .draw()
     }});
-});
-
-$("#stats_click").click(function(){
-    if ($("#viz_div").is(":visible")){
-        $("#stats_table").fadeIn().show();
-        $("#viz_div").fadeIn().hide();
-    }
-    else{
-        $("#stats_table").fadeIn().hide();
-        $("#viz_div").fadeIn().show();
-    }
 });

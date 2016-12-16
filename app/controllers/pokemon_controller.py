@@ -9,3 +9,7 @@ def index(id=id):
     if int(id) <= db.session.query(Pokemon).count():
         return render_template('pokemon/pokemon.html', id=id)
     return redirect(url_for('home_controller.index'))
+
+@blueprint.route("/all/")
+def list():
+    return render_template('pokemon/list_all.html')

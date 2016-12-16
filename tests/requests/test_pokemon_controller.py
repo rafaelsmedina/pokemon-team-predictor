@@ -15,3 +15,7 @@ class TestPokemonController(BaseTestCase):
     def test_pokemon_template_should_be_used(self):
         response = self.client.get("/pokemon/1/")
         self.assert_template_used('pokemon/pokemon.html')
+
+    def test_list_path_should_be_ok(self):
+        response = self.client.get("/pokemon/all/")
+        self.assert_200(response)
