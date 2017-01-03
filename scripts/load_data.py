@@ -2,6 +2,7 @@ import pandas
 import math
 from flask_script import Command
 from app.models.pokemon import Pokemon
+from app.models.abilities import Ability
 from app import db
 
 class LoadData(Command):
@@ -19,9 +20,9 @@ class LoadData(Command):
         def handle_nan_float(data):
             return 0 if math.isnan(float(data)) else float(data)
 
-        data_frame = pandas.read_csv('data/pokemon.csv')
+        data_frame_pkmn = pandas.read_csv('data/pokemon.csv')
 
-        for index, row in data_frame.iterrows():
+        for index, row in data_frame_pkmn.iterrows():
             pokemon = Pokemon()
             pokemon.num_dex = handle_nan_int(row['ndex'])
             pokemon.species = handle_nan_str(row['species'])
@@ -49,5 +50,13 @@ class LoadData(Command):
             pokemon.egg_group1 = handle_nan_str(row['egg-group1'])
             pokemon.egg_group2 = handle_nan_str(row['egg-group2'])
             db.session.add(pokemon)
+
+        data_frame_ablt = pandas.read_csv('data/abilities.csv')
+
+        for index, row in data_frame_ablt.iterrows():
+            ability = Ability()
+            ability.name = row['ability']
+            ability.description = row['description']
+            db.session.add(ability)
 
         db.session.commit()

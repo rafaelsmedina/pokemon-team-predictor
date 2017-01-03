@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, json
 from app.models.pokemon import Pokemon
+from app.models.abilities import Ability
 from app import db
 
 
@@ -17,8 +18,16 @@ def stats(id=id):
         link = image_link(pokemon.forme, pokemon.id)
         type1_img = type_image(pokemon.type1)
         type2_img = type_image(pokemon.type2)
+        ab1 = ability_description(pokemon.ability1)
+        ab2 = ability_description(pokemon.ability2)
+        abH = ability_description(pokemon.abilityH)
         pokemon = json.dumps(dict(pokemon))
-        pokemon = pokemon.replace("}", ", \"img-link\": \"" + link + "\", \"type1-image\": \"" + type1_img + "\", \"type2-image\": \"" + type2_img + "\"}")
+        pokemon = pokemon.replace(
+            "}", ", \"img-link\": \"" + link + "\", \"type1-image\": \"" + 
+            type1_img + "\", \"type2-image\": \"" + type2_img + 
+            "\", \"ability1-desc\": \"" + ab1 + 
+            "\", \"ability2-desc\": \"" + ab2 + 
+            "\", \"abilityH-desc\": \"" + abH + "\"}")
         return jsonify(data=pokemon)
     return None
 
@@ -89,3 +98,9 @@ def image_link(forme, id):
 
 def type_image(type):
     return "http://play.pokemonshowdown.com/sprites/types/" + type + ".png"
+
+def ability_description(ability):
+    ability = db.session.query(Ability).filter_by(name=ability).first()
+    if ability != None:
+        return ability.description
+    return '-'
