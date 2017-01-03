@@ -13,29 +13,46 @@
 {% block content %}
     <!-- Portfolio Grid Section -->
     <section id="portfolio">
-        <div class="container">
+        <div class="container" style="margin-top:100px">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <img id="image-link" src="#" style="float:left">
-                    <h1 id="forme-header" style="float:center"></h1>
-                    
+                <div class="col-lg-6 text-center">
+                    <div class="col-lg-12 text-center">
+                        <img id="image-link" src="#">
+                        <h1 id="forme-header" style="margin-top:0px"></h1>
+                        <img id="type1" src="#">
+                                <img id="type2" src="#">
+                    </div>
+                        <div class="col-md-3" style="height:15px; ">
+                            <div id="ratio_viz" style="height:inherit"></div>
+                        </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="panel panel-default">
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <img id="type1" src="#">
-                            <img id="type2" src="#">
-                        </li>
-                        <li class="list-group-item" id="ability1-li"></li>
-                        <li class="list-group-item" id="ability2-li"></li>
-                        <li class="list-group-item" id="abilityH-li"></li>
-                    </ul>
+                <div class="col-lg-6">
+                    <div class="col-lg-12 text-center" style="margin-bottom:4%;">
+                        <h3>Abilities</h3>
+                    </div>
+                    <div>
+                        <ul class="nav nav-pills nav-justified">
+                          <li id='a1-li' role="presentation" class="active"><a  href="#ability1-tab" data-toggle="tab" id="ab1-title"></a></li>
+                          <li id='a2-li' role="presentation"><a  href="#ability2-tab" data-toggle="tab" id="ab2-title"></a></li>
+                          <li id='aH-li' role="presentation"><a  href="#hidden-ability-tab" data-toggle="tab" id="abH-title"></a></li>
+                        </ul>
+                        <div class="tab-content clearfix">
+                            <div class="tab-pane active" id="ability1-tab">
+                                <div id="ability1-li" style="font-size: larger; margin-top: 10px; margin-left: 3px;"></div>
+                            </div>
+                            <div class="tab-pane" id="ability2-tab">
+                                <div id="ability2-li" style="font-size: larger; margin-top: 10px; margin-left: 3px;"></div>
+                            </div>
+                            <div class="tab-pane" id="hidden-ability-tab">
+                                <div id="abilityH-li" style="font-size: larger; margin-top: 10px; margin-left: 3px;"></div> 
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
 
 
     <!-- About Section -->
@@ -47,17 +64,45 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12" style="overflow:hidden">
-                        <div class="col-md-8" id="stats_viz" style="height:inherit; float:left"></div>
-                    <div class=" col-md-4" style="color:#000; height:inherit">
-                        <li class="list-group-item" id="hp-li"></li>
-                        <li class="list-group-item" id="attack-li"></li>
-                        <li class="list-group-item" id="defense-li"></li>
-                        <li class="list-group-item" id="spattack-li"></li>
-                        <li class="list-group-item" id="spdefense-li"></li>
-                        <li class="list-group-item" id="speed-li"></li>
-                        <li class="list-group-item" id="total-li"></li>
+                <div class="col-md-12" style="height: 312px; margin-top:2.5%;">
+                    
+                    <div class="col-md-6  text-center stats-table">
+                        <div class="col-md-12 stats-table">
+                            <div class="col-md-6">
+                                <p class="title">Attack</p>
+                                <p id="attack-li"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="title">Defense</p>
+                                <p id="defense-li"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <p class="title">Sp. Attack</p>
+                                <p id="spattack-li"> </p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="title">Sp. Defense</p>
+                                <p id="spdefense-li"> </p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                <p class="title">Speed</p>
+                                <p id="speed-li"> </p>
+                            </div>                        
+                            <div class="col-md-6">
+                                <p class="title">HP</p>
+                                <p id="hp-li"></p>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <p class="title">Total</p>
+                            <p id="total-li"></p>
+                        </div>
                     </div>
+                    <div class="col-md-6" id="stats_viz" style="float:left; height:inherit;"></div>
                 </div>
                 </div>
             </div>
@@ -90,7 +135,6 @@
             </div>
         </div>
     </section>
-
 {% endblock %}
 
 {% block footer %}

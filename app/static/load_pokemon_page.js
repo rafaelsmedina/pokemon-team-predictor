@@ -9,28 +9,34 @@ $(document).ready(function() {
 
         //fill abilities
 
-        if(pokemon["ability2"] == 'nan'){
-            $("#ability1-li").text("Ability: " + pokemon["ability1"]);
+        if((pokemon["ability2"] == 'nan') || (pokemon["ability1"] == pokemon["ability2"]) ){
+            $("#ab1-title").text(pokemon["ability1"]);
+            $("#ability1-li").text(pokemon["ability1-desc"]);
+            $("#a2-li").hide();
             $("#ability2-li").hide()
         }
         else {
-            $("#ability1-li").text("Ability 1: " + pokemon["ability1"]);
-            $("#ability2-li").text("Ability 2: " + pokemon["ability2"]);
+            $("#ab1-title").text(pokemon["ability1"]);
+            $("#ability1-li").text(pokemon["ability1-desc"]);
+            $("#ab2-title").text(pokemon["ability2"]);
+            $("#ability2-li").text(pokemon["ability2-desc"]);
         }
         if(pokemon["abilityH"] != 'nan'){
-            $("#abilityH-li").text("Hidden Ability: " + pokemon["abilityH"]);
+            $("#abH-title").text('Hidden: ' + pokemon["abilityH"]);
+            $("#abilityH-li").text(pokemon["abilityH-desc"]);
         } else {
+            $("#aH-li").hide();
             $("#abilityH-li").hide();
         } 
 
         //fill stats
-        $("#hp-li").text("HP: " + pokemon["hp"]);
-        $("#attack-li").text("Attack: " + pokemon["attack"]);
-        $("#defense-li").text("Defense: " + pokemon["defense"]);
-        $("#spattack-li").text("Sp. Attack: " + pokemon["spattack"]);
-        $("#spdefense-li").text("Sp. Defense: " + pokemon["spdefense"]);
-        $("#speed-li").text("Speed: " + pokemon["speed"]);
-        $("#total-li").text("Total: " + pokemon["total"]);
+        $("#hp-li").text(pokemon["hp"]);
+        $("#attack-li").text(pokemon["attack"]);
+        $("#defense-li").text(pokemon["defense"]);
+        $("#spattack-li").text(pokemon["spattack"]);
+        $("#spdefense-li").text(pokemon["spdefense"]);
+        $("#speed-li").text(pokemon["speed"]);
+        $("#total-li").text(pokemon["total"]);
 
         //more info
         $("#weight-li").text("Weight: " + pokemon["weight"]);
