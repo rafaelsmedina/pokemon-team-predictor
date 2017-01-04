@@ -10,21 +10,23 @@ $(document).ready(function() {
         //fill abilities
 
         if((pokemon["ability2"] == 'nan') || (pokemon["ability1"] == pokemon["ability2"]) ){
-            $("#ab1-title").text(pokemon["ability1"]);
+            $("#a1-li").text(pokemon["ability1"]);
             $("#ability1-li").text(pokemon["ability1-desc"]);
+            $("#ab-2").hide();
             $("#a2-li").hide();
             $("#ability2-li").hide()
         }
         else {
-            $("#ab1-title").text(pokemon["ability1"]);
+            $("#a1-li").text(pokemon["ability1"]);
             $("#ability1-li").text(pokemon["ability1-desc"]);
-            $("#ab2-title").text(pokemon["ability2"]);
+            $("#a2-li").text(pokemon["ability2"]);
             $("#ability2-li").text(pokemon["ability2-desc"]);
         }
         if(pokemon["abilityH"] != 'nan'){
-            $("#abH-title").text('Hidden: ' + pokemon["abilityH"]);
+            $("#aH-li").text('Hidden: ' + pokemon["abilityH"]);
             $("#abilityH-li").text(pokemon["abilityH-desc"]);
         } else {
+            $("#ab-H").hide();
             $("#aH-li").hide();
             $("#abilityH-li").hide();
         } 
@@ -39,42 +41,33 @@ $(document).ready(function() {
         $("#total-li").text(pokemon["total"]);
 
         //more info
-        $("#weight-li").text("Weight: " + pokemon["weight"]);
-        $("#height-li").text("Height: " + pokemon["height"]);
+        $("#weight-li").text(pokemon["weight"]);
+        $("#height-li").text(pokemon["height"]);
 
         if(pokemon["dex2"] == 'nan'){
-            if(pokemon["dex1"] == 'nan'){
-                $("#dex1-li").hide();
-            } else{
-
-                $("#dex1-li").text("Dex Entrance: " + pokemon["dex1"]);
-            }
-
-            $("#dex2-li").hide();
+            $("#dex-entrances-tab").hide();
+            $("#dex-entrances-li").hide();
         }
         else {
-            $("#dex1-li").text("Dex Entrance 1: " + pokemon["dex1"]);
-            $("#dex2-li").text("Dex Entrance 2: " + pokemon["dex2"]);
-        }
+            $("#dex1-li").text(pokemon["dex1"]);
+            $("#dex2-li").text(pokemon["dex2"]);}
 
-        $("#class-li").text("Class: " + pokemon["pkmn_class"]);
-        $("#malep-li").text("Male %: " + pokemon["percent_male"]);
-        $("#femalep-li").text("Female %: " + pokemon["percent_female"]);
+        $("#class-li").text(pokemon["pkmn_class"]);
 
         if(pokemon["pre_evolution"] == 'nan'){
-            $("#pre-ev-li").text("Pre-evolution: -");            
+            $("#pre-ev-li").text("-");            
         }
         else {
-            $("#pre-ev-li").text("Pre-evolution: " + pokemon["pre_evolution"]);
+            $("#pre-ev-li").text(pokemon["pre_evolution"]);
         }
 
         if(pokemon["egg_group2"] == 'nan'){
-            $("#egg1-li").text("Egg group: " + pokemon["egg_group1"]);
-            $("#egg2-li").hide();
+            $("#egg1-li").text(pokemon["egg_group1"]);
+            $("#egg2-li").text("-");
         }
         else {
-            $("#egg1-li").text("Egg group 1: " + pokemon["egg_group1"]);
-            $("#egg2-li").text("Egg group 2: " + pokemon["egg_group2"]);
+            $("#egg1-li").text(pokemon["egg_group1"]);
+            $("#egg2-li").text(pokemon["egg_group2"]);
         }
 
 

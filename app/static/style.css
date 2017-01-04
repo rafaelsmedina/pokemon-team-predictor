@@ -179,7 +179,7 @@ header .intro-text .skills {
   }
 }
 section {
-  padding: 100px 0;
+  padding: 70px 0;
 }
 section h2 {
   margin: 0;
@@ -522,4 +522,80 @@ fieldset[disabled] .btn-success.active {
 
 .stats-table .title {
   background-color: #2ae4c1;
+}
+
+.other-info-table{
+  padding: 0px;
+}
+
+.other-info-table .col-md-12 {
+  padding: 0px;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
+  border-color: #2ae4c3;
+}
+
+.other-info-table .col-md-12 .col-md-6 {
+  padding: 0px;
+}
+
+.other-info-table .col-md-12 .col-md-6  .title {
+  background-color: #c7f8ef;
+  font-size: large;
+  padding: 3px 0px 3px 0px;
+  margin: 0px;
+}
+
+.other-info-table .col-md-12 .col-md-6 .info {
+  padding: 3px 0px 3px 0px;
+  margin: 0px;
+  font-size: medium;
+  background-color: #d8faf4;
+}
+
+.tab-content {
+  border-style: solid;
+  border-width: 1px 2px 1px 2px;
+  border-color: #2ae4c3;
+}
+
+.nav-pills {
+  font-size: medium;
+}
+.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #2ae4c3;
+  color:#000;
+}
+
+.graph-mfm {
+  background-color: #c7f8ef;
+}
+
+.tabs-table{
+  padding: 0px;
+}
+
+.tabs-table .ab-row {
+  padding: 0px;
+  border-style: solid;
+  border-width: 1px 0px 1px 0px;
+  border-color: #2ae4c3;
+}
+
+.tabs-table {
+  padding: 0px;
+}
+
+.tabs-table .title {
+  background-color: #c7f8ef;
+  font-size: large;
+  padding: 3px 0px 3px 0px;
+  margin: 0px;
+}
+
+.tabs-table .info {
+  padding: 3px 0px 3px 0px;
+  margin: 0px;
+  font-size: medium;
+  background-color: #d8faf4;
 }
