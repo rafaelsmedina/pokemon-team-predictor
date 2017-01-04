@@ -24,7 +24,13 @@ $(document).ready(function() {
         }
         if(pokemon["abilityH"] != 'nan'){
             $("#aH-li").text('Hidden: ' + pokemon["abilityH"]);
-            $("#abilityH-li").text(pokemon["abilityH-desc"]);
+            if(pokemon["abilityH"] != pokemon["ability1"]){
+                $("#abilityH-li").text(pokemon["abilityH-desc"]);
+            } else {
+                $("#ab-H").hide();
+                $("#aH-li").hide();
+                $("#abilityH-li").hide();
+            }
         } else {
             $("#ab-H").hide();
             $("#aH-li").hide();

@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, json
 from app.models.pokemon import Pokemon
 from app.models.abilities import Ability
 from app import db
+from sqlalchemy import or_
 
 
 blueprint = Blueprint('pokemon_api', __name__, url_prefix='/api/pokemon')
@@ -30,6 +31,11 @@ def stats(id=id):
             "\", \"abilityH-desc\": \"" + abH + "\"}")
         return jsonify(data=pokemon)
     return None
+
+@blueprint.route("/type/<type>")
+def list_per_type(type=type):
+    pokemons = db.session.query(Pokemon).filter(or_(Pokemon.type1==type, Pokemon.type2==type))
+    return jsonify(data=[dict(n) for n in pokemons])
 
 def image_link(forme, id):
     base_string = "http://play.pokemonshowdown.com/sprites/bw/{{substitute-here}}.png"
@@ -104,3 +110,4 @@ def ability_description(ability):
     if ability != None:
         return ability.description
     return '-'
+
