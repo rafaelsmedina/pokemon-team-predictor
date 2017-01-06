@@ -16,6 +16,7 @@ def index(pkmn1, pkmn2=None, pkmn3=None, pkmn4=None, pkmn5=None, pkmn6=None):
     id_list = filter(is_id_valid, id_list)
     print id_list
     if len(id_list) > 0:
+        id_list = "+".join(id_list)
         return render_template('team/team.html', id_list=id_list)
     return redirect(url_for('home_controller.index'))
 

@@ -37,6 +37,29 @@ def list_per_type(type=type):
     pokemons = db.session.query(Pokemon).filter(or_(Pokemon.type1==type, Pokemon.type2==type))
     return jsonify(data=[dict(n) for n in pokemons])
 
+@blueprint.route("/team/<id_list>")
+def get_team(id_list):
+    id_list = id_list.split("+")
+    team = db.session.query(Pokemon).filter(Pokemon.id.in_(id_list)).all()
+    pkmns = []
+    for pokemon in team:
+        link = image_link(pokemon.forme, pokemon.id)
+        type1_img = type_image(pokemon.type1)
+        type2_img = type_image(pokemon.type2)
+        ab1 = ability_description(pokemon.ability1)
+        ab2 = ability_description(pokemon.ability2)
+        abH = ability_description(pokemon.abilityH)
+        pokemon = json.dumps(dict(pokemon))
+        pokemon = pokemon.replace(
+            "}", ", \"img-link\": \"" + link + "\", \"type1-image\": \"" + 
+            type1_img + "\", \"type2-image\": \"" + type2_img + 
+            "\", \"ability1-desc\": \"" + ab1 + 
+            "\", \"ability2-desc\": \"" + ab2 + 
+            "\", \"abilityH-desc\": \"" + abH + "\"}")
+        pkmns.append(json.loads(pokemon))
+    return jsonify(data=pkmns)
+
+
 def image_link(forme, id):
     base_string = "http://play.pokemonshowdown.com/sprites/bw/{{substitute-here}}.png"
     if '(' in forme:

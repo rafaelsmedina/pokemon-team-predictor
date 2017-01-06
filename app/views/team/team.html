@@ -11,17 +11,19 @@
 {% endblock %}
 
 {% block content %}
+    <div id="team_list" hidden> {{id_list}}</div>
     <section id="portfolio">
         <div class="container" style="margin-top:100px">
             <div class="row">
-                <div class="col-lg-12 text-center" style="margin-top:40px">
-
-                    {% for id in id_list %}
-                        <div class="col-md-2 poke-id">
-                            <h1> {{ id }} </h1>
-                        </div>
-                    {% endfor %}
-
+                <div id="team-div" class="col-md-12 text-center" style="margin-top:40px"></div>
+                <div id="viz-div">
+                    <div class="col-md-4" id="hp_viz" style="height:300px"></div>
+                    <div class="col-md-4" id="attack_viz" style="height:300px"></div>
+                    <div class="col-md-4" id="defense_viz" style="height:300px"></div>
+                    <div class="col-md-4" id="speed_viz" style="height:300px"></div>
+                    <div class="col-md-4" id="spattack_viz" style="height:300px"></div>
+                    <div class="col-md-4" id="spdefense_viz" style="height:300px"></div>
+                    <div class="col-md-6" id="total_viz" style="height:400px"></div>
                 </div>
             </div>
         </div>
